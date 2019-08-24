@@ -17,10 +17,11 @@ public class OompaLoompaController {
     @Autowired
     private OompaLoompaService oompaLoompaService;
 
-    @GetMapping("/list/{page}")
+    @GetMapping("/list")
     public PageOf<OompaLoompaBasicDTO> getOompaLoompas(
-            @PathVariable("page") int page){
-        return oompaLoompaService.getAllOompaLoompasPaged(page);
+            @RequestParam("page") int page,
+            @RequestParam("size") int size){
+        return oompaLoompaService.getAllOompaLoompasPaged(page,size);
     }
 
     @GetMapping("/{id}")

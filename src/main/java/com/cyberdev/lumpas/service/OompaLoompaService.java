@@ -76,8 +76,8 @@ public class OompaLoompaService {
                 oompaLoompaPersisted.getDescription());
     }
 
-    public PageOf<OompaLoompaBasicDTO> getAllOompaLoompasPaged(int pageNumber) {
-        PageRequest pageRequest = PageRequest.of(pageNumber, 10);
+    public PageOf<OompaLoompaBasicDTO> getAllOompaLoompasPaged(int pageNumber,int size) {
+        PageRequest pageRequest = PageRequest.of(pageNumber, size);
         Page<OompaLoompaBasicDTO> page = oompaLoompaRepository.findAll(pageRequest).map(oompaLoompaData -> {
             return new OompaLoompaBasicDTO(
                     oompaLoompaData.getId().toHexString(),
@@ -86,6 +86,6 @@ public class OompaLoompaService {
                     oompaLoompaData.getJob()
             );
         });
-        return new PageOf<OompaLoompaBasicDTO>(page.getContent(),page.getNumber(),page.getTotalPages(),page.getSize());
+        return new PageOf<OompaLoompaBasicDTO>(page.getContent(),page.getNumber(),page.getSize(),page.getTotalPages());
     }
 }

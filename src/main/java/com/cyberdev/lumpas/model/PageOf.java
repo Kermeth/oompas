@@ -12,6 +12,6 @@ import java.util.List;
 public class PageOf <T>{
     private List<T> content;
     private int pageNumber;
-    private int totalPages;
     private int pageSize;
+    private int pagesTotal;
 }
