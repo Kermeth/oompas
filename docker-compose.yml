@@ -1,0 +1,32 @@
+version: '3.7'
+
+services:
+  springboot:
+    container_name: loompasApi
+    build: .
+    restart: always
+    networks:
+      - loompasNetwork
+    ports:
+      - 8080:8080
+    working_dir: /opt/app
+    depends_on:
+      - mongodb
+
+  mongodb:
+    image: mongo:latest
+    container_name: loompasMongo
+    restart: always
+    hostname: mongodb
+    networks:
+      - loompasNetwork
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: 1234
+      MONGO_INITDB_DATABASE: admin
+    ports:
+      - 27017:27017
+
+networks:
+  loompasNetwork:
+    name: loompasNetwork

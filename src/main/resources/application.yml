@@ -1,0 +1,18 @@
+#Application Configuration
+app:
+  name: loompasApi
+  description: Oompa Loompas Management API
+
+server:
+  port: 8080
+logging:
+  file: loompas.log
+spring:
+  data:
+    mongodb:
+      host: mongodb
+      port: 27017
+      username: "admin"
+      password: "1234"
+      database: "loompas"
+      authentication-database: "admin"
