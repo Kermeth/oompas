@@ -3,6 +3,7 @@ package com.cyberdev.lumpas.service;
 import com.cyberdev.lumpas.model.OompaLoompa.OompaLoompaBasicDTO;
 import com.cyberdev.lumpas.model.OompaLoompa.OompaLoompaData;
 import com.cyberdev.lumpas.model.OompaLoompa.OompaLoompaDetailDTO;
+import com.cyberdev.lumpas.model.PageOf;
 import com.cyberdev.lumpas.repository.OompaLoompaRepository;
 import lombok.RequiredArgsConstructor;
 import org.bson.types.ObjectId;
@@ -10,9 +11,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -77,15 +76,16 @@ public class OompaLoompaService {
                 oompaLoompaPersisted.getDescription());
     }
 
-    public List<OompaLoompaBasicDTO> getAllOompaLoompas() {
-        PageRequest pageRequest = PageRequest.of(0, 10);
-        Page<OompaLoompaData> page = oompaLoompaRepository.findAll(pageRequest);
-        return page.stream().map(oompaLoompaData -> {
+    public PageOf<OompaLoompaBasicDTO> getAllOompaLoompasPaged(int pageNumber) {
+        PageRequest pageRequest = PageRequest.of(pageNumber, 10);
+        Page<OompaLoompaBasicDTO> page = oompaLoompaRepository.findAll(pageRequest).map(oompaLoompaData -> {
             return new OompaLoompaBasicDTO(
                     oompaLoompaData.getId().toHexString(),
                     oompaLoompaData.getName(),
                     oompaLoompaData.getAge(),
-                    oompaLoompaData.getJob());
-        }).collect(Collectors.toList());
+                    oompaLoompaData.getJob()
+            );
+        });
+        return new PageOf<OompaLoompaBasicDTO>(page.getContent(),page.getNumber(),page.getTotalPages(),page.getSize());
     }
 }

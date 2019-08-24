@@ -2,13 +2,13 @@ package com.cyberdev.lumpas.controller;
 
 import com.cyberdev.lumpas.model.OompaLoompa.OompaLoompaBasicDTO;
 import com.cyberdev.lumpas.model.OompaLoompa.OompaLoompaDetailDTO;
+import com.cyberdev.lumpas.model.PageOf;
 import com.cyberdev.lumpas.service.OompaLoompaException;
 import com.cyberdev.lumpas.service.OompaLoompaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.List;
 
 @RestController
 @RequestMapping("/api")
@@ -18,9 +18,9 @@ public class OompaLoompaController {
     private OompaLoompaService oompaLoompaService;
 
     @GetMapping("/list/{page}")
-    public List<OompaLoompaBasicDTO> getOompaLoompas(
+    public PageOf<OompaLoompaBasicDTO> getOompaLoompas(
             @PathVariable("page") int page){
-        return oompaLoompaService.getAllOompaLoompas();
+        return oompaLoompaService.getAllOompaLoompasPaged(page);
     }
 
     @GetMapping("/{id}")
