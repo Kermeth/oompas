@@ -1,9 +1,10 @@
 package com.cyberdev.lumpas.service;
 
-import com.cyberdev.lumpas.model.OompaLoompa.OompaLoompaBasicDTO;
-import com.cyberdev.lumpas.model.OompaLoompa.OompaLoompaData;
-import com.cyberdev.lumpas.model.OompaLoompa.OompaLoompaDetailDTO;
+import com.cyberdev.lumpas.model.oompaLoompa.OompaLoompaBasicDTO;
+import com.cyberdev.lumpas.model.oompaLoompa.OompaLoompaData;
+import com.cyberdev.lumpas.model.oompaLoompa.OompaLoompaDetailDTO;
 import com.cyberdev.lumpas.model.PageOf;
+import com.cyberdev.lumpas.model.oompaLoompa.exceptions.OompaLoompaNotFoundException;
 import com.cyberdev.lumpas.repository.OompaLoompaRepository;
 import lombok.RequiredArgsConstructor;
 import org.bson.types.ObjectId;
@@ -32,7 +33,7 @@ public class OompaLoompaService {
         return this.saveOompaLoompa(oompaLoompaData);
     }
 
-    public OompaLoompaDetailDTO getOompaLoompa(String id) throws OompaLoompaException {
+    public OompaLoompaDetailDTO getOompaLoompa(String id) throws OompaLoompaNotFoundException {
         OompaLoompaData oompaLoompaData = this.getOompaLoompaById(id);
         return new OompaLoompaDetailDTO(
                 oompaLoompaData.getId().toHexString(),
@@ -44,7 +45,7 @@ public class OompaLoompaService {
                 oompaLoompaData.getDescription());
     }
 
-    public OompaLoompaDetailDTO editOompaLoompa(OompaLoompaDetailDTO oompaLoompa) throws OompaLoompaException {
+    public OompaLoompaDetailDTO editOompaLoompa(OompaLoompaDetailDTO oompaLoompa) throws OompaLoompaNotFoundException {
         OompaLoompaData oompaLoompaData = this.getOompaLoompaById(oompaLoompa.getId());
         oompaLoompaData.setName(oompaLoompa.getName());
         oompaLoompaData.setAge(oompaLoompa.getAge());
@@ -55,10 +56,10 @@ public class OompaLoompaService {
         return this.saveOompaLoompa(oompaLoompaData);
     }
 
-    private OompaLoompaData getOompaLoompaById(String id) throws OompaLoompaException {
+    private OompaLoompaData getOompaLoompaById(String id) throws OompaLoompaNotFoundException {
         Optional<OompaLoompaData> oompaOptional = oompaLoompaRepository.findById(id);
         if(!oompaOptional.isPresent()){
-            throw new OompaLoompaException("Oompaloompa with id: "+id+" not found");
+            throw new OompaLoompaNotFoundException("Oompaloompa with id: "+id+" not found");
         }else {
             return oompaOptional.get();
         }

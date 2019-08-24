@@ -1,7 +1,7 @@
 package com.cyberdev.lumpas.service;
 
-import com.cyberdev.lumpas.model.OompaLoompa.OompaLoompaData;
-import com.cyberdev.lumpas.model.OompaLoompa.OompaLoompaDetailDTO;
+import com.cyberdev.lumpas.model.oompaLoompa.OompaLoompaData;
+import com.cyberdev.lumpas.model.oompaLoompa.OompaLoompaDetailDTO;
 import com.cyberdev.lumpas.repository.OompaLoompaRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

@@ -1,4 +1,4 @@
-package com.cyberdev.lumpas.model.OompaLoompa;
+package com.cyberdev.lumpas.model.oompaLoompa;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -7,14 +7,11 @@ import lombok.Setter;
 @Getter
 @Setter
 @AllArgsConstructor
-public class OompaLoompaDetailDTO {
+public class OompaLoompaBasicDTO {
 
     private String id;
     private String name;
-    private Integer age;
+    private int age;
     private String job;
-    private Float height;
-    private Float weight;
-    private String description;
 
 }

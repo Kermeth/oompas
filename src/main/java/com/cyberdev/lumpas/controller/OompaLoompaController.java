@@ -1,9 +1,9 @@
 package com.cyberdev.lumpas.controller;
 
-import com.cyberdev.lumpas.model.OompaLoompa.OompaLoompaBasicDTO;
-import com.cyberdev.lumpas.model.OompaLoompa.OompaLoompaDetailDTO;
+import com.cyberdev.lumpas.model.oompaLoompa.OompaLoompaBasicDTO;
+import com.cyberdev.lumpas.model.oompaLoompa.OompaLoompaDetailDTO;
 import com.cyberdev.lumpas.model.PageOf;
-import com.cyberdev.lumpas.service.OompaLoompaException;
+import com.cyberdev.lumpas.model.oompaLoompa.exceptions.OompaLoompaNotFoundException;
 import com.cyberdev.lumpas.service.OompaLoompaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -26,7 +26,7 @@ public class OompaLoompaController {
 
     @GetMapping("/{id}")
     public OompaLoompaDetailDTO getOompaLoompa(
-            @PathVariable("id") String id) throws OompaLoompaException {
+            @PathVariable("id") String id) throws OompaLoompaNotFoundException {
         return oompaLoompaService.getOompaLoompa(id);
     }
 
@@ -40,7 +40,7 @@ public class OompaLoompaController {
     @PutMapping("/edit")
     public OompaLoompaDetailDTO editOompaLoompa(
             @Valid
-            @RequestBody OompaLoompaDetailDTO oompaLoompa) throws OompaLoompaException {
+            @RequestBody OompaLoompaDetailDTO oompaLoompa) throws OompaLoompaNotFoundException {
         return oompaLoompaService.editOompaLoompa(oompaLoompa);
     }
 
