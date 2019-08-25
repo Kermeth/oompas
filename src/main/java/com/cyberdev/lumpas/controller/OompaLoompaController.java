@@ -26,7 +26,7 @@ public class OompaLoompaController {
 
     @GetMapping("/{id}")
     public OompaLoompaDetailDTO getOompaLoompa(
-            @PathVariable("id") String id) throws OompaLoompaNotFoundException {
+            @PathVariable("id") String id) {
         return oompaLoompaService.getOompaLoompa(id);
     }
 
@@ -40,7 +40,7 @@ public class OompaLoompaController {
     @PutMapping("/edit")
     public OompaLoompaDetailDTO editOompaLoompa(
             @Valid
-            @RequestBody OompaLoompaDetailDTO oompaLoompa) throws OompaLoompaNotFoundException {
+            @RequestBody OompaLoompaDetailDTO oompaLoompa) {
         return oompaLoompaService.editOompaLoompa(oompaLoompa);
     }
 
