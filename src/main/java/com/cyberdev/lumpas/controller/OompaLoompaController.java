@@ -1,11 +1,11 @@
 package com.cyberdev.lumpas.controller;
 
+import com.cyberdev.lumpas.model.PageOf;
 import com.cyberdev.lumpas.model.oompaLoompa.OompaLoompaBasicDTO;
 import com.cyberdev.lumpas.model.oompaLoompa.OompaLoompaDetailDTO;
-import com.cyberdev.lumpas.model.PageOf;
-import com.cyberdev.lumpas.model.oompaLoompa.exceptions.OompaLoompaNotFoundException;
 import com.cyberdev.lumpas.service.OompaLoompaService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CachePut;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -18,6 +18,7 @@ public class OompaLoompaController {
     private OompaLoompaService oompaLoompaService;
 
     @GetMapping("/list")
+    @CachePut("loompas")
     public PageOf<OompaLoompaBasicDTO> getOompaLoompas(
             @RequestParam("page") int page,
             @RequestParam("size") int size){
