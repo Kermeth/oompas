@@ -5,7 +5,6 @@ import com.cyberdev.lumpas.model.oompaLoompa.OompaLoompaBasicDTO;
 import com.cyberdev.lumpas.model.oompaLoompa.OompaLoompaDetailDTO;
 import com.cyberdev.lumpas.service.OompaLoompaService;
 import io.reactivex.Observable;
-import io.reactivex.Scheduler;
 import io.reactivex.schedulers.Schedulers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CachePut;
