@@ -1,9 +1,9 @@
 package com.cyberdev.lumpas.service;
 
+import com.cyberdev.lumpas.model.PageOf;
 import com.cyberdev.lumpas.model.oompaLoompa.OompaLoompaBasicDTO;
 import com.cyberdev.lumpas.model.oompaLoompa.OompaLoompaData;
 import com.cyberdev.lumpas.model.oompaLoompa.OompaLoompaDetailDTO;
-import com.cyberdev.lumpas.model.PageOf;
 import com.cyberdev.lumpas.model.oompaLoompa.exceptions.OompaLoompaNotFoundException;
 import com.cyberdev.lumpas.repository.OompaLoompaRepository;
 import lombok.RequiredArgsConstructor;
