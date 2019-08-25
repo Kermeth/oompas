@@ -14,7 +14,6 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
-import java.util.concurrent.TimeUnit;
 
 @Service
 @RequiredArgsConstructor
@@ -31,12 +30,13 @@ public class OompaLoompaService {
                 newOompaLoompa.getHeight(),
                 newOompaLoompa.getWeight(),
                 newOompaLoompa.getDescription()
-        );
+        ); //create OompaLoompaData with DetailDTO
         return this.saveOompaLoompa(oompaLoompaData);
     }
 
     public OompaLoompaDetailDTO getOompaLoompa(String id) throws OompaLoompaNotFoundException {
         OompaLoompaData oompaLoompaData = this.getOompaLoompaById(id);
+        //return DetailDTO
         return new OompaLoompaDetailDTO(
                 oompaLoompaData.getId().toHexString(),
                 oompaLoompaData.getName(),
@@ -49,6 +49,7 @@ public class OompaLoompaService {
 
     public OompaLoompaDetailDTO editOompaLoompa(OompaLoompaDetailDTO oompaLoompa) throws OompaLoompaNotFoundException {
         OompaLoompaData oompaLoompaData = this.getOompaLoompaById(oompaLoompa.getId());
+        //Edit the Data with DetailDTO info
         oompaLoompaData.setName(oompaLoompa.getName());
         oompaLoompaData.setAge(oompaLoompa.getAge());
         oompaLoompaData.setJob(oompaLoompa.getJob());
@@ -56,6 +57,33 @@ public class OompaLoompaService {
         oompaLoompaData.setWeight(oompaLoompa.getWeight());
         oompaLoompaData.setDescription(oompaLoompa.getDescription());
         return this.saveOompaLoompa(oompaLoompaData);
+    }
+
+    public PageOf<OompaLoompaBasicDTO> getAllOompaLoompasPaged(int pageNumber,int size) {
+        PageRequest pageRequest = PageRequest.of(pageNumber, size);
+        Page<OompaLoompaBasicDTO> page = oompaLoompaRepository.findAll(pageRequest) //Find the page requested of OompaLoompaData
+                //Map the Data to BasicDTO
+                .map(oompaLoompaData -> {
+                    return new OompaLoompaBasicDTO(
+                            oompaLoompaData.getId().toHexString(),
+                            oompaLoompaData.getName(),
+                            oompaLoompaData.getAge(),
+                            oompaLoompaData.getJob()
+                    );
+                });
+        return new PageOf<OompaLoompaBasicDTO>(page.getContent(),page.getNumber(),page.getSize(),page.getTotalPages());
+    }
+
+    public Observable<OompaLoompaBasicDTO> getAllOopaLoompasReactive(){
+        return Observable.fromFuture(oompaLoompaRepository.findAllReactive())
+                .flatMapIterable(list -> list)
+                .map(oompaLoompaData -> {
+                            return new OompaLoompaBasicDTO(
+                                    oompaLoompaData.getId().toHexString(),
+                                    oompaLoompaData.getName(),
+                                    oompaLoompaData.getAge(),
+                                    oompaLoompaData.getJob());
+                });
     }
 
     private OompaLoompaData getOompaLoompaById(String id) throws OompaLoompaNotFoundException {
@@ -77,31 +105,6 @@ public class OompaLoompaService {
                 oompaLoompaPersisted.getHeight(),
                 oompaLoompaPersisted.getWeight(),
                 oompaLoompaPersisted.getDescription());
-    }
-
-    public PageOf<OompaLoompaBasicDTO> getAllOompaLoompasPaged(int pageNumber,int size) {
-        PageRequest pageRequest = PageRequest.of(pageNumber, size);
-        Page<OompaLoompaBasicDTO> page = oompaLoompaRepository.findAll(pageRequest).map(oompaLoompaData -> {
-            return new OompaLoompaBasicDTO(
-                    oompaLoompaData.getId().toHexString(),
-                    oompaLoompaData.getName(),
-                    oompaLoompaData.getAge(),
-                    oompaLoompaData.getJob()
-            );
-        });
-        return new PageOf<OompaLoompaBasicDTO>(page.getContent(),page.getNumber(),page.getSize(),page.getTotalPages());
-    }
-
-    public Observable<OompaLoompaBasicDTO> getAllOopaLoompasReactive(){
-        return Observable.fromFuture(oompaLoompaRepository.findAllReactive())
-                .flatMapIterable(list -> list)
-                .map(oompaLoompaData -> {
-                            return new OompaLoompaBasicDTO(
-                                    oompaLoompaData.getId().toHexString(),
-                                    oompaLoompaData.getName(),
-                                    oompaLoompaData.getAge(),
-                                    oompaLoompaData.getJob());
-                });
     }
 
 }
