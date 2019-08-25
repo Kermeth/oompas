@@ -93,14 +93,15 @@ public class OompaLoompaService {
     }
 
     public Observable<OompaLoompaBasicDTO> getAllOopaLoompasReactive(){
-        return Observable.fromIterable(oompaLoompaRepository.findAll())
+        return Observable.fromFuture(oompaLoompaRepository.findAllReactive())
+                .flatMapIterable(list -> list)
                 .map(oompaLoompaData -> {
-                    return new OompaLoompaBasicDTO(
-                            oompaLoompaData.getId().toHexString(),
-                            oompaLoompaData.getName(),
-                            oompaLoompaData.getAge(),
-                            oompaLoompaData.getJob()
-                    );
+                            return new OompaLoompaBasicDTO(
+                                    oompaLoompaData.getId().toHexString(),
+                                    oompaLoompaData.getName(),
+                                    oompaLoompaData.getAge(),
+                                    oompaLoompaData.getJob());
                 });
     }
+
 }

@@ -29,7 +29,7 @@ public class OompaLoompaController {
         return oompaLoompaService.getAllOompaLoompasPaged(page,size);
     }
 
-    @GetMapping(value = "/reactive",produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/reactive",produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public Observable<OompaLoompaBasicDTO> getOompaLoompasReactive(){
         return oompaLoompaService.getAllOopaLoompasReactive()
                 .subscribeOn(Schedulers.single());
