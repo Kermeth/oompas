@@ -6,6 +6,7 @@ import com.cyberdev.lumpas.model.oompaLoompa.OompaLoompaData;
 import com.cyberdev.lumpas.model.oompaLoompa.OompaLoompaDetailDTO;
 import com.cyberdev.lumpas.model.oompaLoompa.exceptions.OompaLoompaNotFoundException;
 import com.cyberdev.lumpas.repository.OompaLoompaRepository;
+import io.reactivex.Observable;
 import lombok.RequiredArgsConstructor;
 import org.bson.types.ObjectId;
 import org.springframework.data.domain.Page;
@@ -13,6 +14,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
+import java.util.concurrent.TimeUnit;
 
 @Service
 @RequiredArgsConstructor
@@ -88,5 +90,17 @@ public class OompaLoompaService {
             );
         });
         return new PageOf<OompaLoompaBasicDTO>(page.getContent(),page.getNumber(),page.getSize(),page.getTotalPages());
+    }
+
+    public Observable<OompaLoompaBasicDTO> getAllOopaLoompasReactive(){
+        return Observable.fromIterable(oompaLoompaRepository.findAll())
+                .map(oompaLoompaData -> {
+                    return new OompaLoompaBasicDTO(
+                            oompaLoompaData.getId().toHexString(),
+                            oompaLoompaData.getName(),
+                            oompaLoompaData.getAge(),
+                            oompaLoompaData.getJob()
+                    );
+                });
     }
 }

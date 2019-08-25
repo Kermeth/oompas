@@ -4,8 +4,12 @@ import com.cyberdev.lumpas.model.PageOf;
 import com.cyberdev.lumpas.model.oompaLoompa.OompaLoompaBasicDTO;
 import com.cyberdev.lumpas.model.oompaLoompa.OompaLoompaDetailDTO;
 import com.cyberdev.lumpas.service.OompaLoompaService;
+import io.reactivex.Observable;
+import io.reactivex.Scheduler;
+import io.reactivex.schedulers.Schedulers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CachePut;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -23,6 +27,12 @@ public class OompaLoompaController {
             @RequestParam("page") int page,
             @RequestParam("size") int size){
         return oompaLoompaService.getAllOompaLoompasPaged(page,size);
+    }
+
+    @GetMapping(value = "/reactive",produces = MediaType.APPLICATION_JSON_VALUE)
+    public Observable<OompaLoompaBasicDTO> getOompaLoompasReactive(){
+        return oompaLoompaService.getAllOopaLoompasReactive()
+                .subscribeOn(Schedulers.single());
     }
 
     @GetMapping("/{id}")
