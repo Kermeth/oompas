@@ -22,10 +22,8 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-data-mongodb'
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-cache'
+    implementation 'io.reactivex.rxjava2:rxjava:2.2.11' //Using RxJava to use reactive programming
     compileOnly 'org.projectlombok:lombok'
-    annotationProcessor 'org.projectlombok:lombok'
-    testImplementation ('org.springframework.boot:spring-boot-starter-test'){
-        exclude group: 'junit', module: 'junit'
-    }
-    testImplementation 'org.junit.jupiter:junit-jupiter-engine:5.0.0'
+    annotationProcessor 'org.projectlombok:lombok' //Using Lombok to avoid Boilerplate Code
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
