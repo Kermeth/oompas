@@ -59,7 +59,7 @@ public class OompaLoompaServiceTest {
         listOfOompaLoompaDatas.add(oompaLoompaData);
         when(oompaLoompaRepository.save(any(OompaLoompaData.class))).then(returnsFirstArg());
         when(oompaLoompaRepository.findById(oompaLoompaData.getId().toHexString())).thenReturn(Optional.of(oompaLoompaData));
-        when(oompaLoompaRepository.findAll(any(PageRequest.class))).thenReturn(new PageImpl<>(listOfOompaLoompaDatas));
+        when(oompaLoompaRepository.findAllBasicDTO(any(PageRequest.class))).thenReturn(new PageImpl<>(listOfOompaLoompaDatas));
         when(oompaLoompaRepository.findAllReactive()).thenReturn(CompletableFuture.<List<OompaLoompaData>>completedFuture(listOfOompaLoompaDatas));
     }
 
