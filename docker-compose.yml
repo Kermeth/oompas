@@ -12,6 +12,7 @@ services:
     working_dir: /opt/app
     depends_on:
       - mongodb
+    command: java -jar /loompas.jar
 
   mongodb:
     image: mongo:latest
