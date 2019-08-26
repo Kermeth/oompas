@@ -61,7 +61,7 @@ public class OompaLoompaService {
 
     public PageOf<OompaLoompaBasicDTO> getAllOompaLoompasPaged(int pageNumber,int size) {
         PageRequest pageRequest = PageRequest.of(pageNumber, size);
-        Page<OompaLoompaBasicDTO> page = oompaLoompaRepository.findAll(pageRequest) //Find the page requested of OompaLoompaData
+        Page<OompaLoompaBasicDTO> page = oompaLoompaRepository.findAllBasicDTO(pageRequest) //Find the page requested of OompaLoompaData without extra info
                 //Map the Data to BasicDTO
                 .map(oompaLoompaData -> {
                     return new OompaLoompaBasicDTO(
