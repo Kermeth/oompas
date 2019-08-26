@@ -1,9 +1,9 @@
 # OompaLoompas Management API
 
-###Requeriments
+## Requeriments
 - Docker
 - Docker compose
-###Usage
+## Usage
 To run the API execute this commands:
 
 1. gradle build
