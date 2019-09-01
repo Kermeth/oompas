@@ -1,4 +1,4 @@
-package com.cyberdev.lumpas.model;
+package com.cyberdev.lumpas.util;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

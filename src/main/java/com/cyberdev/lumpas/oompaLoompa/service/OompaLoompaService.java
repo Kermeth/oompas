@@ -1,11 +1,11 @@
-package com.cyberdev.lumpas.service;
+package com.cyberdev.lumpas.oompaLoompa.service;
 
-import com.cyberdev.lumpas.model.PageOf;
-import com.cyberdev.lumpas.model.oompaLoompa.OompaLoompaBasicDTO;
-import com.cyberdev.lumpas.model.oompaLoompa.OompaLoompaData;
-import com.cyberdev.lumpas.model.oompaLoompa.OompaLoompaDetailDTO;
-import com.cyberdev.lumpas.model.oompaLoompa.exceptions.OompaLoompaNotFoundException;
-import com.cyberdev.lumpas.repository.OompaLoompaRepository;
+import com.cyberdev.lumpas.util.PageOf;
+import com.cyberdev.lumpas.oompaLoompa.OompaLoompaBasicDTO;
+import com.cyberdev.lumpas.oompaLoompa.OompaLoompaData;
+import com.cyberdev.lumpas.oompaLoompa.OompaLoompaDetailDTO;
+import com.cyberdev.lumpas.oompaLoompa.exceptions.OompaLoompaNotFoundException;
+import com.cyberdev.lumpas.oompaLoompa.repository.OompaLoompaRepository;
 import io.reactivex.Observable;
 import lombok.RequiredArgsConstructor;
 import org.bson.types.ObjectId;
@@ -59,7 +59,7 @@ public class OompaLoompaService {
         return this.saveOompaLoompa(oompaLoompaData);
     }
 
-    public PageOf<OompaLoompaBasicDTO> getAllOompaLoompasPaged(int pageNumber,int size) {
+    public PageOf<OompaLoompaBasicDTO> getAllOompaLoompasPaged(int pageNumber, int size) {
         PageRequest pageRequest = PageRequest.of(pageNumber, size);
         Page<OompaLoompaBasicDTO> page = oompaLoompaRepository.findAllBasicDTO(pageRequest) //Find the page requested of OompaLoompaData without extra info
                 //Map the Data to BasicDTO

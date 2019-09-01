@@ -1,11 +1,10 @@
-package com.cyberdev.lumpas.controller;
+package com.cyberdev.lumpas.oompaLoompa.controller;
 
-import com.cyberdev.lumpas.model.PageOf;
-import com.cyberdev.lumpas.model.oompaLoompa.OompaLoompaBasicDTO;
-import com.cyberdev.lumpas.model.oompaLoompa.OompaLoompaDetailDTO;
-import com.cyberdev.lumpas.service.OompaLoompaService;
+import com.cyberdev.lumpas.util.PageOf;
+import com.cyberdev.lumpas.oompaLoompa.OompaLoompaBasicDTO;
+import com.cyberdev.lumpas.oompaLoompa.OompaLoompaDetailDTO;
+import com.cyberdev.lumpas.oompaLoompa.service.OompaLoompaService;
 import io.reactivex.Observable;
-import io.reactivex.schedulers.Schedulers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.http.MediaType;

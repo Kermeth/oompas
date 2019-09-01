@@ -1,4 +1,4 @@
-package com.cyberdev.lumpas.model.oompaLoompa;
+package com.cyberdev.lumpas.oompaLoompa;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

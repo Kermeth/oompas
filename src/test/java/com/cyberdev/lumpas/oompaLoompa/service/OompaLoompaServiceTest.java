@@ -1,10 +1,8 @@
-package com.cyberdev.lumpas.service;
+package com.cyberdev.lumpas.oompaLoompa.service;
 
-import com.cyberdev.lumpas.model.PageOf;
-import com.cyberdev.lumpas.model.oompaLoompa.OompaLoompaBasicDTO;
-import com.cyberdev.lumpas.model.oompaLoompa.OompaLoompaData;
-import com.cyberdev.lumpas.model.oompaLoompa.OompaLoompaDetailDTO;
-import com.cyberdev.lumpas.repository.OompaLoompaRepository;
+import com.cyberdev.lumpas.util.PageOf;
+import com.cyberdev.lumpas.oompaLoompa.*;
+import com.cyberdev.lumpas.oompaLoompa.repository.OompaLoompaRepository;
 import org.bson.types.ObjectId;
 import org.junit.Before;
 import org.junit.Test;

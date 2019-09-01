@@ -1,6 +1,6 @@
-package com.cyberdev.lumpas.repository;
+package com.cyberdev.lumpas.oompaLoompa.repository;
 
-import com.cyberdev.lumpas.model.oompaLoompa.OompaLoompaData;
+import com.cyberdev.lumpas.oompaLoompa.OompaLoompaData;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.mongodb.repository.MongoRepository;
