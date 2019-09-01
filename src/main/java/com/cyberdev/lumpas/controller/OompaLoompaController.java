@@ -30,8 +30,7 @@ public class OompaLoompaController {
 
     @GetMapping(value = "/reactive",produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public Observable<OompaLoompaBasicDTO> getOompaLoompasReactive(){
-        return oompaLoompaService.getAllOopaLoompasReactive()
-                .subscribeOn(Schedulers.single());
+        return oompaLoompaService.getAllOopaLoompasReactive();
     }
 
     @GetMapping("/{id}")
